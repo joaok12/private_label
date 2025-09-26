@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tabela de Cores e Tamanhos</title>
+    <title>Tabelas de Cores e Tamanhos</title>
     <style>
         body {
             font-family: 'Arial', sans-serif;
@@ -11,148 +12,328 @@
             text-align: center;
             padding: 20px;
         }
-        .container {
-            background: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
-            display: inline-block;
-            width: 90%;
-            max-width: 600px;
+
+        .app-container {
+            width: 95%;
+            max-width: 1200px;
+            margin: 0 auto;
         }
+
+        .app-header {
+            margin-bottom: 16px;
+        }
+
+        .app-actions {
+            margin: 12px 0 24px 0;
+        }
+
+        .app-actions button {
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            padding: 10px 16px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .app-actions button:hover {
+            opacity: 0.9;
+        }
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 16px;
+        }
+
+        .card {
+            background: white;
+            padding: 16px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.15);
+            text-align: left;
+        }
+
+        .card-header {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+
+        .model-title {
+            font-size: 22px;
+            font-weight: bold;
+            border: none;
+            border-bottom: 2px solid #007BFF;
+            padding: 6px 4px;
+            outline: none;
+            width: 100%;
+        }
+
+        .size-inputs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px 12px;
+            align-items: center;
+        }
+
+        .size-inputs label {
+            font-weight: bold;
+        }
+
+        .size-inputs input[type="number"] {
+            width: 80px;
+            padding: 6px 8px;
+            font-size: 16px;
+            text-align: center;
+            border: 1px solid #007BFF;
+            border-radius: 6px;
+        }
+
+        .card-actions {
+            display: flex;
+            gap: 8px;
+        }
+
+        .card-actions button {
+            background-color: #28a745;
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            padding: 8px 12px;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        .card-actions button.secondary {
+            background-color: #6c757d;
+        }
+
         table {
             width: 100%;
             border-collapse: collapse;
-            margin: 20px 0;
-            font-size: 18px;
+            margin: 12px 0;
+            font-size: 16px;
         }
-        th, td {
+
+        th,
+        td {
             border: 1px solid #ddd;
-            padding: 12px;
+            padding: 10px;
             text-align: center;
         }
+
         th {
             background-color: #007BFF;
             color: white;
         }
-        input {
-            width: 80px;
-            padding: 8px;
-            font-size: 16px;
-            text-align: center;
-            border: 1px solid #007BFF;
-            border-radius: 5px;
-        }
-        .total-row, .grand-total-row {
+
+        .total-row,
+        .grand-total-row {
             font-weight: bold;
             background-color: #e9ecef;
         }
+
         .add-color-section {
-            margin-top: 40px;
-            padding: 20px;
-            background: white;
-            border-radius: 10px;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            margin-top: 16px;
+            padding: 12px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.08);
+        }
+
+        .add-color-section input[type="text"] {
+            width: 60%;
+            padding: 8px 10px;
+            border: 1px solid #007BFF;
+            border-radius: 6px;
+        }
+
+        .add-color-section button {
+            margin-left: 8px;
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            padding: 8px 12px;
+            cursor: pointer;
         }
     </style>
-</head>
-<body>
-    <div class="container">
-        <h2>Tabela de Cores e Tamanhos</h2>
-        <label for="tamanhoP">P:</label>
-        <input type="number" id="tamanhoP" value="0" min="0" onchange="atualizarTabela()">
-        <label for="tamanhoM">M:</label>
-        <input type="number" id="tamanhoM" value="0" min="0" onchange="atualizarTabela()">
-        <label for="tamanhoG">G:</label>
-        <input type="number" id="tamanhoG" value="0" min="0" onchange="atualizarTabela()">
-        <label for="tamanhoGG">GG:</label>
-        <input type="number" id="tamanhoGG" value="0" min="0" onchange="atualizarTabela()">
-        
-        <table>
-            <thead>
-                <tr>
-                    <th>Cor</th>
-                    <th>Tecidos</th>
-                    <th>P</th>
-                    <th>M</th>
-                    <th>G</th>
-                    <th>GG</th>
-                </tr>
-            </thead>
-            <tbody id="tabela">
-            </tbody>
-            <tfoot>
-                <tr class="total-row">
-                    <td colspan="2">Total</td>
-                    <td id="totalP">0</td>
-                    <td id="totalM">0</td>
-                    <td id="totalG">0</td>
-                    <td id="totalGG">0</td>
-                </tr>
-                <tr class="grand-total-row">
-                    <td colspan="2">Total Geral</td>
-                    <td colspan="4" id="totalGeral">0</td>
-                </tr>
-            </tfoot>
-        </table>
-    </div>
-    
-    <div class="add-color-section">
-        <h3>Adicionar Cor</h3>
-        <label for="novaCor">Nome da Cor:</label>
-        <input type="text" id="novaCor" placeholder="Digite a cor">
-        <button onclick="adicionarCor()">Adicionar</button>
-    </div>
-    
+    <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
     <script>
-        function atualizarTabela() {
-            let tamanhos = {
-                P: parseInt(document.getElementById("tamanhoP").value) || 0,
-                M: parseInt(document.getElementById("tamanhoM").value) || 0,
-                G: parseInt(document.getElementById("tamanhoG").value) || 0,
-                GG: parseInt(document.getElementById("tamanhoGG").value) || 0
-            };
-            
-            let total = { P: 0, M: 0, G: 0, GG: 0 };
-            document.querySelectorAll("#tabela tr").forEach(linha => {
-                let tecidoInput = linha.querySelector("td input");
-                if (!tecidoInput) return;
-                let tecidos = parseInt(tecidoInput.value) || 1;
-                let cor = linha.dataset.cor;
-                linha.querySelector(".p").textContent = tamanhos.P * tecidos;
-                linha.querySelector(".m").textContent = tamanhos.M * tecidos;
-                linha.querySelector(".g").textContent = tamanhos.G * tecidos;
-                linha.querySelector(".gg").textContent = tamanhos.GG * tecidos;
-                total.P += tamanhos.P * tecidos;
-                total.M += tamanhos.M * tecidos;
-                total.G += tamanhos.G * tecidos;
-                total.GG += tamanhos.GG * tecidos;
+        document.addEventListener('DOMContentLoaded', function () {
+            const container = document.getElementById('tablesContainer');
+            const btnNovaTabela = document.getElementById('btnNovaTabela');
+
+            btnNovaTabela.addEventListener('click', function () {
+                criarTabela();
             });
-            document.getElementById("totalP").textContent = total.P;
-            document.getElementById("totalM").textContent = total.M;
-            document.getElementById("totalG").textContent = total.G;
-            document.getElementById("totalGG").textContent = total.GG;
-            document.getElementById("totalGeral").textContent = total.P + total.M + total.G + total.GG;
-        }
-        
-        function adicionarCor() {
-            let novaCor = document.getElementById("novaCor").value.trim();
-            if (!novaCor) return;
-            let tabela = document.getElementById("tabela");
-            let novaLinha = document.createElement("tr");
-            novaLinha.dataset.cor = novaCor.toLowerCase();
-            novaLinha.innerHTML = `
-                <td>${novaCor}</td>
-                <td><input type="number" min="1" value="1" onchange="atualizarTabela()"></td>
-                <td class="p">0</td>
-                <td class="m">0</td>
-                <td class="g">0</td>
-                <td class="gg">0</td>
-            `;
-            tabela.appendChild(novaLinha);
-            document.getElementById("novaCor").value = "";
-            atualizarTabela();
-        }
+
+            criarTabela();
+
+            function criarTabela() {
+                const card = document.createElement('div');
+                card.className = 'card tabela-card';
+
+                card.innerHTML = `
+                    <div class="card-header">
+                        <input type="text" class="model-title" placeholder="Nome do modelo">
+                        <div class="size-inputs">
+                            <label>P:</label>
+                            <input type="number" class="inp-p" value="0" min="0">
+                            <label>M:</label>
+                            <input type="number" class="inp-m" value="0" min="0">
+                            <label>G:</label>
+                            <input type="number" class="inp-g" value="0" min="0">
+                            <label>GG:</label>
+                            <input type="number" class="inp-gg" value="0" min="0">
+                        </div>
+                        <div class="card-actions">
+                            <button class="btn-download">Baixar imagem</button>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Cor</th>
+                                    <th>Tecidos</th>
+                                    <th>P</th>
+                                    <th>M</th>
+                                    <th>G</th>
+                                    <th>GG</th>
+                                </tr>
+                            </thead>
+                            <tbody class="tabela-body"></tbody>
+                            <tfoot>
+                                <tr class="total-row">
+                                    <td colspan="2">Total</td>
+                                    <td class="total-p">0</td>
+                                    <td class="total-m">0</td>
+                                    <td class="total-g">0</td>
+                                    <td class="total-gg">0</td>
+                                </tr>
+                                <tr class="grand-total-row">
+                                    <td colspan="2">Total Geral</td>
+                                    <td colspan="4" class="total-geral">0</td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                    <div class="add-color-section">
+                        <h3>Adicionar Cor</h3>
+                        <label>Nome da Cor:</label>
+                        <input type="text" class="nova-cor" placeholder="Digite a cor">
+                        <button class="btn-add-color">Adicionar</button>
+                    </div>
+                `;
+
+                container.appendChild(card);
+
+                const inputs = card.querySelectorAll('.size-inputs input[type="number"]');
+                inputs.forEach(inp => inp.addEventListener('input', () => atualizarTabelaDoCard(card)));
+
+                const btnAddColor = card.querySelector('.btn-add-color');
+                btnAddColor.addEventListener('click', function () {
+                    adicionarCorNoCard(card);
+                });
+
+                const btnDownload = card.querySelector('.btn-download');
+                btnDownload.addEventListener('click', function () {
+                    baixarImagemDoCard(card);
+                });
+
+                atualizarTabelaDoCard(card);
+            }
+
+            function obterTamanhosDoCard(card) {
+                return {
+                    P: parseInt(card.querySelector('.inp-p').value) || 0,
+                    M: parseInt(card.querySelector('.inp-m').value) || 0,
+                    G: parseInt(card.querySelector('.inp-g').value) || 0,
+                    GG: parseInt(card.querySelector('.inp-gg').value) || 0
+                };
+            }
+
+            function atualizarTabelaDoCard(card) {
+                const tamanhos = obterTamanhosDoCard(card);
+                const linhas = card.querySelectorAll('.tabela-body tr');
+                const total = { P: 0, M: 0, G: 0, GG: 0 };
+
+                linhas.forEach(linha => {
+                    const tecidoInput = linha.querySelector('input[type="number"]');
+                    if (!tecidoInput) return;
+                    const tecidos = parseInt(tecidoInput.value) || 1;
+                    linha.querySelector('.p').textContent = tamanhos.P * tecidos;
+                    linha.querySelector('.m').textContent = tamanhos.M * tecidos;
+                    linha.querySelector('.g').textContent = tamanhos.G * tecidos;
+                    linha.querySelector('.gg').textContent = tamanhos.GG * tecidos;
+                    total.P += tamanhos.P * tecidos;
+                    total.M += tamanhos.M * tecidos;
+                    total.G += tamanhos.G * tecidos;
+                    total.GG += tamanhos.GG * tecidos;
+                });
+
+                card.querySelector('.total-p').textContent = total.P;
+                card.querySelector('.total-m').textContent = total.M;
+                card.querySelector('.total-g').textContent = total.G;
+                card.querySelector('.total-gg').textContent = total.GG;
+                card.querySelector('.total-geral').textContent = total.P + total.M + total.G + total.GG;
+            }
+
+            function adicionarCorNoCard(card) {
+                const inputCor = card.querySelector('.nova-cor');
+                const nomeCor = (inputCor.value || '').trim();
+                if (!nomeCor) return;
+                const tbody = card.querySelector('.tabela-body');
+
+                const tr = document.createElement('tr');
+                tr.dataset.cor = nomeCor.toLowerCase();
+                tr.innerHTML = `
+                    <td>${nomeCor}</td>
+                    <td><input type="number" min="1" value="1"></td>
+                    <td class="p">0</td>
+                    <td class="m">0</td>
+                    <td class="g">0</td>
+                    <td class="gg">0</td>
+                `;
+
+                tbody.appendChild(tr);
+
+                const tecidoInput = tr.querySelector('input[type="number"]');
+                tecidoInput.addEventListener('input', () => atualizarTabelaDoCard(card));
+
+                inputCor.value = '';
+                atualizarTabelaDoCard(card);
+            }
+
+            function baixarImagemDoCard(card) {
+                const titulo = (card.querySelector('.model-title').value || 'tabela').trim();
+                const nomeArquivo = `${titulo || 'tabela'}.png`;
+                const opt = { backgroundColor: '#ffffff', scale: 2 };
+                html2canvas(card, opt).then(canvas => {
+                    const link = document.createElement('a');
+                    link.download = nomeArquivo;
+                    link.href = canvas.toDataURL('image/png');
+                    link.click();
+                });
+            }
+        });
     </script>
+</head>
+
+<body>
+    <div class="app-container">
+        <div class="app-header">
+            <h2>Tabelas de Cores e Tamanhos</h2>
+        </div>
+        <div class="app-actions">
+            <button id="btnNovaTabela">Adicionar Nova Tabela</button>
+        </div>
+        <div id="tablesContainer" class="cards-grid"></div>
+    </div>
 </body>
+
 </html>
