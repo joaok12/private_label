@@ -2,379 +2,503 @@
 <html lang="pt-BR">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tabelas de Cores e Tamanhos</title>
-    <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            background-color: #f4f4f4;
-            text-align: center;
-            padding: 20px;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tabelas de Cores e Tamanhos</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
 
-        .app-container {
-            width: 95%;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #f4f4f4;
+      text-align: center;
+      padding: 12px;
+      margin: 0;
+    }
 
-        .app-header {
-            margin-bottom: 16px;
-        }
+    .app-container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
 
-        .app-actions {
-            margin: 12px 0 24px 0;
-        }
+    .app-header {
+      margin-bottom: 12px;
+    }
 
-        .app-actions button {
-            background-color: #007BFF;
-            color: #fff;
-            border: none;
-            border-radius: 6px;
-            padding: 10px 16px;
-            font-size: 16px;
-            cursor: pointer;
-            touch-action: manipulation;
-        }
+    .app-header h2 {
+      font-size: 24px;
+      margin: 8px 0;
+    }
 
-        .app-actions button:hover {
-            opacity: 0.9;
-        }
+    .app-actions {
+      margin: 12px 0 20px 0;
+    }
 
-        .cards-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 16px;
-        }
+    .app-actions button {
+      background-color: #007BFF;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      padding: 14px 20px;
+      font-size: 16px;
+      cursor: pointer;
+      touch-action: manipulation;
+      width: 100%;
+      max-width: 100%;
+      min-height: 48px;
+      font-weight: 600;
+    }
 
-        .card {
-            background: white;
-            padding: 16px;
-            border-radius: 10px;
-            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.15);
-            text-align: left;
-        }
+    .app-actions button:active {
+      opacity: 0.8;
+      transform: scale(0.98);
+    }
 
-        .card-header {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-            margin-bottom: 12px;
-        }
+    .cards-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
 
-        .model-title {
-            font-size: 22px;
-            font-weight: bold;
-            border: none;
-            border-bottom: 2px solid #007BFF;
-            padding: 6px 4px;
-            outline: none;
-            width: 100%;
-        }
+    .card {
+      background: white;
+      padding: 16px;
+      border-radius: 12px;
+      box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+      text-align: left;
+    }
 
-        .size-inputs {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px 12px;
-            align-items: center;
-        }
+    .card-header {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-bottom: 16px;
+    }
 
-        .size-inputs label {
-            font-weight: bold;
-        }
+    .model-title {
+      font-size: 20px;
+      font-weight: bold;
+      border: none;
+      border-bottom: 3px solid #007BFF;
+      padding: 12px 8px;
+      outline: none;
+      width: 100%;
+      min-height: 48px;
+    }
 
-        .size-inputs input[type="number"] {
-            width: 80px;
-            padding: 6px 8px;
-            font-size: 16px;
-            text-align: center;
-            border: 1px solid #007BFF;
-            border-radius: 6px;
-            touch-action: manipulation;
-        }
+    .size-inputs {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
 
-        .card-actions {
-            display: flex;
-            gap: 8px;
-        }
+    .size-input-wrapper {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
 
-        .card-actions button {
-            background-color: #28a745;
-            color: #fff;
-            border: none;
-            border-radius: 6px;
-            padding: 8px 12px;
-            font-size: 14px;
-            cursor: pointer;
-            touch-action: manipulation;
-        }
+    .size-input-wrapper label {
+      display: block;
+      font-weight: bold;
+      font-size: 18px;
+      text-align: center;
+      color: #007BFF;
+    }
 
-        .card-actions button.secondary {
-            background-color: #6c757d;
-        }
+    .size-inputs input[type="number"] {
+      width: 100%;
+      padding: 12px;
+      font-size: 16px;
+      text-align: center;
+      border: 2px solid #007BFF;
+      border-radius: 8px;
+      touch-action: manipulation;
+      min-height: 48px;
+    }
 
-        /* Quantity controls */
-        .qty-control {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-        }
+    .card-actions {
+      display: flex;
+      gap: 10px;
+      flex-direction: column;
+    }
 
-        .qty-control .btn-qty {
-            background: #f0f0f0;
-            border: 1px solid #ccc;
-            border-radius: 6px;
-            width: 32px;
-            height: 32px;
-            line-height: 30px;
-            text-align: center;
-            font-size: 18px;
-            cursor: pointer;
-            padding: 0;
-            touch-action: manipulation;
-        }
+    .card-actions button {
+      background-color: #28a745;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      padding: 14px 16px;
+      font-size: 16px;
+      cursor: pointer;
+      touch-action: manipulation;
+      width: 100%;
+      min-height: 48px;
+      font-weight: 600;
+    }
 
-        .qty-control .qty-input {
-            width: 64px;
-            padding: 6px 8px;
-            text-align: center;
-        }
+    .card-actions button:active {
+      opacity: 0.8;
+      transform: scale(0.98);
+    }
 
-        .table-wrapper {
-            overflow-x: auto;
-            -webkit-overflow-scrolling: touch;
-        }
+    .card-actions button.secondary {
+      background-color: #6c757d;
+    }
 
-        /* Fit table columns and shrink Tecidos */
-        .table-fixed {
-            table-layout: fixed;
-        }
+    /* Quantity controls */
+    .qty-control {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      justify-content: center;
+    }
 
-        /* Narrow Tecidos column on wider screens */
-        .table-fixed th:nth-child(2),
-        .table-fixed td:nth-child(2) {
-            width: 90px;
-        }
+    .qty-control .btn-qty {
+      background: #007BFF;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      width: 44px;
+      height: 44px;
+      line-height: 44px;
+      text-align: center;
+      font-size: 24px;
+      font-weight: bold;
+      cursor: pointer;
+      padding: 0;
+      touch-action: manipulation;
+      flex-shrink: 0;
+    }
 
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 12px 0;
-            font-size: 16px;
-        }
+    .qty-control .btn-qty:active {
+      opacity: 0.8;
+      transform: scale(0.95);
+    }
 
-        th,
-        td {
-            border: 1px solid #ddd;
-            padding: 10px;
-            text-align: center;
-        }
+    .qty-control .qty-input {
+      width: 70px;
+      padding: 10px;
+      text-align: center;
+      font-size: 18px;
+      font-weight: bold;
+      border: 2px solid #ddd;
+      border-radius: 8px;
+      min-height: 44px;
+    }
 
-        th {
-            background-color: #007BFF;
-            color: white;
-        }
+    /* Controles de quantidade dentro da tabela */
+    td .qty-control {
+      flex-wrap: nowrap;
+      width: 100%;
+      justify-content: center;
+      flex-direction: row !important;
+      gap: 3px !important;
+    }
 
-        .total-row,
-        .grand-total-row {
-            font-weight: bold;
-            background-color: #e9ecef;
-        }
+    td .qty-control .btn-qty {
+      width: 26px;
+      height: 26px;
+      line-height: 26px;
+      font-size: 14px;
+      flex-shrink: 0;
+      border-radius: 5px;
+    }
 
-        .add-color-section {
-            margin-top: 16px;
-            padding: 12px;
-            background: #fff;
-            border-radius: 8px;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.08);
-        }
+    td .qty-control .qty-input {
+      width: 40px;
+      padding: 3px 2px;
+      font-size: 13px;
+      min-height: 26px;
+      flex-shrink: 0;
+      border-radius: 5px;
+      border-width: 1px;
+    }
 
-        .add-color-section input[type="text"] {
-            width: 60%;
-            padding: 8px 10px;
-            border: 1px solid #007BFF;
-            border-radius: 6px;
-        }
+    .table-wrapper {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      margin: 0 -16px;
+      padding: 0 16px;
+    }
 
-        .add-color-section button {
-            margin-left: 8px;
-            background-color: #007BFF;
-            color: #fff;
-            border: none;
-            border-radius: 6px;
-            padding: 8px 12px;
-            cursor: pointer;
-            touch-action: manipulation;
-        }
+    .table-fixed {
+      table-layout: fixed;
+      min-width: 100%;
+    }
 
-        /* Mobile-first improvements */
-        @media (max-width: 600px) {
-            body {
-                padding: 12px;
-            }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 12px 0;
+      font-size: 14px;
+    }
 
-            .cards-grid {
-                grid-template-columns: 1fr;
-            }
+    th,
+    td {
+      border: 1px solid #ddd;
+      padding: 10px 6px;
+      text-align: center;
+      vertical-align: middle;
+      overflow: visible;
+    }
 
-            .card {
-                padding: 12px;
-            }
+    th {
+      background-color: #007BFF;
+      color: white;
+      font-weight: 600;
+      font-size: 13px;
+    }
 
-            .model-title {
-                font-size: 18px;
-                padding: 10px 6px;
-                min-height: 44px;
-            }
+    /* Garantir larguras adequadas para cada coluna */
+    .table-fixed th:nth-child(1),
+    .table-fixed td:nth-child(1) {
+      min-width: 120px;
+      width: 35%;
+    }
 
-            .size-inputs {
-                display: grid;
-                grid-template-columns: repeat(4, 1fr);
-                gap: 8px;
-            }
+    .table-fixed th:nth-child(2),
+    .table-fixed td:nth-child(2) {
+      min-width: 140px;
+      width: 30%;
+    }
 
-            .size-inputs label {
-                display: none;
-            }
+    .table-fixed th:nth-child(3),
+    .table-fixed td:nth-child(3),
+    .table-fixed th:nth-child(4),
+    .table-fixed td:nth-child(4),
+    .table-fixed th:nth-child(5),
+    .table-fixed td:nth-child(5),
+    .table-fixed th:nth-child(6),
+    .table-fixed td:nth-child(6) {
+      width: 8.75%;
+      min-width: 60px;
+    }
 
-            .size-inputs input[type="number"] {
-                width: 100%;
-                min-height: 44px;
-                font-size: 16px;
-            }
+    .total-row,
+    .grand-total-row {
+      font-weight: bold;
+      background-color: #e9ecef;
+    }
 
-            .card-actions {
-                flex-direction: column;
-            }
+    .btn-delete-color {
+      background-color: #dc3545;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      width: 36px;
+      height: 36px;
+      font-size: 18px;
+      font-weight: bold;
+      cursor: pointer;
+      touch-action: manipulation;
+      padding: 0;
+      line-height: 1;
+      flex-shrink: 0;
+    }
 
-            .card-actions button {
-                width: 100%;
-                min-height: 44px;
-                font-size: 16px;
-            }
+    .btn-delete-color:active {
+      opacity: 0.8;
+      transform: scale(0.95);
+    }
 
-            .add-color-section {
-                padding: 10px;
-            }
+    .color-name-cell {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      width: 100%;
+      min-height: 44px;
+    }
 
-            .add-color-section input[type="text"] {
-                width: 100%;
-                min-height: 44px;
-                margin-bottom: 8px;
-            }
+    .color-name-cell span {
+      flex: 1;
+      text-align: left;
+      word-break: break-word;
+      overflow-wrap: anywhere;
+    }
 
-            .add-color-section button {
-                width: 100%;
-                min-height: 44px;
-                font-size: 16px;
-                margin-left: 0;
-            }
+    .add-color-section {
+      margin-top: 16px;
+      padding: 16px;
+      background: #f8f9fa;
+      border-radius: 10px;
+    }
 
-            table {
-                font-size: 13px;
-            }
+    .add-color-section h3 {
+      margin: 0 0 12px 0;
+      font-size: 18px;
+    }
 
-            th,
-            td {
-                padding: 8px;
-            }
+    .add-color-section input[type="text"] {
+      width: 100%;
+      padding: 12px;
+      border: 2px solid #007BFF;
+      border-radius: 8px;
+      font-size: 16px;
+      margin-bottom: 10px;
+      min-height: 48px;
+    }
 
-            .app-actions button {
-                width: 100%;
-                min-height: 44px;
-            }
+    .add-color-section button {
+      width: 100%;
+      background-color: #007BFF;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      padding: 14px 16px;
+      cursor: pointer;
+      touch-action: manipulation;
+      font-size: 16px;
+      min-height: 48px;
+      font-weight: 600;
+    }
 
-            /* Force table to fit viewport width */
-            .table-fixed th:nth-child(1),
-            .table-fixed td:nth-child(1) {
-                width: 28%;
-                word-break: break-word;
-                overflow-wrap: anywhere;
-            }
+    .add-color-section button:active {
+      opacity: 0.8;
+      transform: scale(0.98);
+    }
 
-            .table-fixed th:nth-child(2),
-            .table-fixed td:nth-child(2) {
-                width: 18%;
-            }
+    /* Estilos específicos para telas maiores (tablet e desktop) */
+    @media (min-width: 768px) {
+      body {
+        padding: 24px;
+      }
 
-            .table-fixed th:nth-child(3),
-            .table-fixed td:nth-child(3) {
-                width: 13%;
-            }
+      .app-header h2 {
+        font-size: 28px;
+      }
 
-            .table-fixed th:nth-child(4),
-            .table-fixed td:nth-child(4) {
-                width: 13%;
-            }
+      .cards-grid {
+        grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+      }
 
-            .table-fixed th:nth-child(5),
-            .table-fixed td:nth-child(5) {
-                width: 13%;
-            }
+      .card {
+        padding: 24px;
+      }
 
-            .table-fixed th:nth-child(6),
-            .table-fixed td:nth-child(6) {
-                width: 15%;
-            }
+      .size-inputs {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 16px;
+      }
 
-            .qty-control .btn-qty {
-                width: 32px;
-                height: 32px;
-                line-height: 30px;
-                font-size: 18px;
-            }
+      .size-input-wrapper label {
+        font-size: 16px;
+      }
 
-            .qty-control .qty-input {
-                width: 56px;
-                min-height: 32px;
-            }
-        }
-    </style>
-    <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const container = document.getElementById('tablesContainer');
-            const btnNovaTabela = document.getElementById('btnNovaTabela');
+      .card-actions {
+        flex-direction: row;
+      }
 
-            btnNovaTabela.addEventListener('click', function () {
-                criarTabela();
-            });
+      .card-actions button {
+        flex: 1;
+      }
 
-            criarTabela();
+      .app-actions button {
+        max-width: 400px;
+      }
 
-            function criarTabela() {
-                const card = document.createElement('div');
-                card.className = 'card tabela-card';
+      .add-color-section {
+        display: flex;
+        align-items: flex-end;
+        gap: 12px;
+      }
 
-                card.innerHTML = `
+      .add-color-section h3 {
+        display: none;
+      }
+
+      .add-color-section input[type="text"] {
+        flex: 1;
+        margin-bottom: 0;
+      }
+
+      .add-color-section button {
+        width: auto;
+        padding: 12px 24px;
+      }
+
+      table {
+        font-size: 15px;
+      }
+
+      th,
+      td {
+        padding: 12px 10px;
+      }
+
+      .table-fixed th:nth-child(1),
+      .table-fixed td:nth-child(1) {
+        min-width: 150px;
+      }
+
+      .table-fixed th:nth-child(2),
+      .table-fixed td:nth-child(2) {
+        min-width: 160px;
+      }
+
+      .btn-delete-color {
+        width: 32px;
+        height: 32px;
+        font-size: 20px;
+      }
+    }
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const container = document.getElementById('tablesContainer');
+      const btnNovaTabela = document.getElementById('btnNovaTabela');
+
+      btnNovaTabela.addEventListener('click', function () {
+        criarTabela();
+      });
+
+      criarTabela();
+
+      function criarTabela() {
+        const card = document.createElement('div');
+        card.className = 'card tabela-card';
+
+        card.innerHTML = `
                     <div class="card-header">
                         <input type="text" class="model-title" placeholder="Nome do modelo">
                         <div class="size-inputs">
-                            <label>P:</label>
-                            <span class="qty-control">
-                                <button type="button" class="btn-qty btn-dec" aria-label="Diminuir P">−</button>
-                                <input type="number" class="inp-p qty-input" value="0" min="0" placeholder="P">
-                                <button type="button" class="btn-qty btn-inc" aria-label="Aumentar P">+</button>
-                            </span>
-                            <label>M:</label>
-                            <span class="qty-control">
-                                <button type="button" class="btn-qty btn-dec" aria-label="Diminuir M">−</button>
-                                <input type="number" class="inp-m qty-input" value="0" min="0" placeholder="M">
-                                <button type="button" class="btn-qty btn-inc" aria-label="Aumentar M">+</button>
-                            </span>
-                            <label>G:</label>
-                            <span class="qty-control">
-                                <button type="button" class="btn-qty btn-dec" aria-label="Diminuir G">−</button>
-                                <input type="number" class="inp-g qty-input" value="0" min="0" placeholder="G">
-                                <button type="button" class="btn-qty btn-inc" aria-label="Aumentar G">+</button>
-                            </span>
-                            <label>GG:</label>
-                            <span class="qty-control">
-                                <button type="button" class="btn-qty btn-dec" aria-label="Diminuir GG">−</button>
-                                <input type="number" class="inp-gg qty-input" value="0" min="0" placeholder="GG">
-                                <button type="button" class="btn-qty btn-inc" aria-label="Aumentar GG">+</button>
-                            </span>
+                            <div class="size-input-wrapper">
+                                <label>P</label>
+                                <span class="qty-control">
+                                    <button type="button" class="btn-qty btn-dec" aria-label="Diminuir P">−</button>
+                                    <input type="number" class="inp-p qty-input" value="0" min="0" placeholder="P">
+                                    <button type="button" class="btn-qty btn-inc" aria-label="Aumentar P">+</button>
+                                </span>
+                            </div>
+                            <div class="size-input-wrapper">
+                                <label>M</label>
+                                <span class="qty-control">
+                                    <button type="button" class="btn-qty btn-dec" aria-label="Diminuir M">−</button>
+                                    <input type="number" class="inp-m qty-input" value="0" min="0" placeholder="M">
+                                    <button type="button" class="btn-qty btn-inc" aria-label="Aumentar M">+</button>
+                                </span>
+                            </div>
+                            <div class="size-input-wrapper">
+                                <label>G</label>
+                                <span class="qty-control">
+                                    <button type="button" class="btn-qty btn-dec" aria-label="Diminuir G">−</button>
+                                    <input type="number" class="inp-g qty-input" value="0" min="0" placeholder="G">
+                                    <button type="button" class="btn-qty btn-inc" aria-label="Aumentar G">+</button>
+                                </span>
+                            </div>
+                            <div class="size-input-wrapper">
+                                <label>GG</label>
+                                <span class="qty-control">
+                                    <button type="button" class="btn-qty btn-dec" aria-label="Diminuir GG">−</button>
+                                    <input type="number" class="inp-gg qty-input" value="0" min="0" placeholder="GG">
+                                    <button type="button" class="btn-qty btn-inc" aria-label="Aumentar GG">+</button>
+                                </span>
+                            </div>
                         </div>
                         <div class="card-actions">
                             <button class="btn-download">Baixar imagem</button>
@@ -418,73 +542,78 @@
                     </div>
                 `;
 
-                container.appendChild(card);
+        container.appendChild(card);
 
-                const inputs = card.querySelectorAll('.size-inputs input[type="number"]');
-                inputs.forEach(inp => inp.addEventListener('input', () => atualizarTabelaDoCard(card)));
-                // Setup qty controls for size inputs
-                card.querySelectorAll('.size-inputs .qty-control').forEach(ctrl => {
-                    setupQtyControl(ctrl, () => atualizarTabelaDoCard(card));
-                });
+        const inputs = card.querySelectorAll('.size-inputs input[type="number"]');
+        inputs.forEach(inp => inp.addEventListener('input', () => atualizarTabelaDoCard(card)));
+        // Setup qty controls for size inputs
+        card.querySelectorAll('.size-inputs .qty-control').forEach(ctrl => {
+          setupQtyControl(ctrl, () => atualizarTabelaDoCard(card));
+        });
 
-                const btnAddColor = card.querySelector('.btn-add-color');
-                btnAddColor.addEventListener('click', function () {
-                    adicionarCorNoCard(card);
-                });
+        const btnAddColor = card.querySelector('.btn-add-color');
+        btnAddColor.addEventListener('click', function () {
+          adicionarCorNoCard(card);
+        });
 
-                const btnDownload = card.querySelector('.btn-download');
-                btnDownload.addEventListener('click', function () {
-                    baixarImagemDoCard(card);
-                });
+        const btnDownload = card.querySelector('.btn-download');
+        btnDownload.addEventListener('click', function () {
+          baixarImagemDoCard(card);
+        });
 
-                atualizarTabelaDoCard(card);
-            }
+        atualizarTabelaDoCard(card);
+      }
 
-            function obterTamanhosDoCard(card) {
-                return {
-                    P: parseInt(card.querySelector('.inp-p').value) || 0,
-                    M: parseInt(card.querySelector('.inp-m').value) || 0,
-                    G: parseInt(card.querySelector('.inp-g').value) || 0,
-                    GG: parseInt(card.querySelector('.inp-gg').value) || 0
-                };
-            }
+      function obterTamanhosDoCard(card) {
+        return {
+          P: parseInt(card.querySelector('.inp-p').value) || 0,
+          M: parseInt(card.querySelector('.inp-m').value) || 0,
+          G: parseInt(card.querySelector('.inp-g').value) || 0,
+          GG: parseInt(card.querySelector('.inp-gg').value) || 0
+        };
+      }
 
-            function atualizarTabelaDoCard(card) {
-                const tamanhos = obterTamanhosDoCard(card);
-                const linhas = card.querySelectorAll('.tabela-body tr');
-                const total = { P: 0, M: 0, G: 0, GG: 0 };
+      function atualizarTabelaDoCard(card) {
+        const tamanhos = obterTamanhosDoCard(card);
+        const linhas = card.querySelectorAll('.tabela-body tr');
+        const total = { P: 0, M: 0, G: 0, GG: 0 };
 
-                linhas.forEach(linha => {
-                    const tecidoInput = linha.querySelector('input[type="number"]');
-                    if (!tecidoInput) return;
-                    const tecidos = parseInt(tecidoInput.value) || 1;
-                    linha.querySelector('.p').textContent = tamanhos.P * tecidos;
-                    linha.querySelector('.m').textContent = tamanhos.M * tecidos;
-                    linha.querySelector('.g').textContent = tamanhos.G * tecidos;
-                    linha.querySelector('.gg').textContent = tamanhos.GG * tecidos;
-                    total.P += tamanhos.P * tecidos;
-                    total.M += tamanhos.M * tecidos;
-                    total.G += tamanhos.G * tecidos;
-                    total.GG += tamanhos.GG * tecidos;
-                });
+        linhas.forEach(linha => {
+          const tecidoInput = linha.querySelector('input[type="number"]');
+          if (!tecidoInput) return;
+          const tecidos = parseInt(tecidoInput.value) || 1;
+          linha.querySelector('.p').textContent = tamanhos.P * tecidos;
+          linha.querySelector('.m').textContent = tamanhos.M * tecidos;
+          linha.querySelector('.g').textContent = tamanhos.G * tecidos;
+          linha.querySelector('.gg').textContent = tamanhos.GG * tecidos;
+          total.P += tamanhos.P * tecidos;
+          total.M += tamanhos.M * tecidos;
+          total.G += tamanhos.G * tecidos;
+          total.GG += tamanhos.GG * tecidos;
+        });
 
-                card.querySelector('.total-p').textContent = total.P;
-                card.querySelector('.total-m').textContent = total.M;
-                card.querySelector('.total-g').textContent = total.G;
-                card.querySelector('.total-gg').textContent = total.GG;
-                card.querySelector('.total-geral').textContent = total.P + total.M + total.G + total.GG;
-            }
+        card.querySelector('.total-p').textContent = total.P;
+        card.querySelector('.total-m').textContent = total.M;
+        card.querySelector('.total-g').textContent = total.G;
+        card.querySelector('.total-gg').textContent = total.GG;
+        card.querySelector('.total-geral').textContent = total.P + total.M + total.G + total.GG;
+      }
 
-            function adicionarCorNoCard(card) {
-                const inputCor = card.querySelector('.nova-cor');
-                const nomeCor = (inputCor.value || '').trim();
-                if (!nomeCor) return;
-                const tbody = card.querySelector('.tabela-body');
+      function adicionarCorNoCard(card) {
+        const inputCor = card.querySelector('.nova-cor');
+        const nomeCor = (inputCor.value || '').trim();
+        if (!nomeCor) return;
+        const tbody = card.querySelector('.tabela-body');
 
-                const tr = document.createElement('tr');
-                tr.dataset.cor = nomeCor.toLowerCase();
-                tr.innerHTML = `
-                    <td>${nomeCor}</td>
+        const tr = document.createElement('tr');
+        tr.dataset.cor = nomeCor.toLowerCase();
+        tr.innerHTML = `
+                    <td>
+                        <div class="color-name-cell">
+                            <span>${nomeCor}</span>
+                            <button type="button" class="btn-delete-color" aria-label="Deletar cor" title="Deletar cor">×</button>
+                        </div>
+                    </td>
                     <td>
                         <span class="qty-control">
                             <button type="button" class="btn-qty btn-dec" aria-label="Diminuir tecidos">−</button>
@@ -498,61 +627,70 @@
                     <td class="gg">0</td>
                 `;
 
-                tbody.appendChild(tr);
+        tbody.appendChild(tr);
 
-                const tecidoInput = tr.querySelector('.qty-tecido');
-                tecidoInput.addEventListener('input', () => atualizarTabelaDoCard(card));
-                setupQtyControl(tr.querySelector('.qty-control'), () => atualizarTabelaDoCard(card));
+        const tecidoInput = tr.querySelector('.qty-tecido');
+        tecidoInput.addEventListener('input', () => atualizarTabelaDoCard(card));
+        setupQtyControl(tr.querySelector('.qty-control'), () => atualizarTabelaDoCard(card));
 
-                inputCor.value = '';
-                atualizarTabelaDoCard(card);
-            }
-
-            function setupQtyControl(containerEl, onChange) {
-                const input = containerEl.querySelector('input[type="number"]');
-                const btnDec = containerEl.querySelector('.btn-dec');
-                const btnInc = containerEl.querySelector('.btn-inc');
-                const min = input.min !== '' ? parseInt(input.min) : -Infinity;
-                const step = input.step !== '' ? parseInt(input.step) : 1;
-                btnDec.addEventListener('click', () => {
-                    const current = parseInt(input.value) || 0;
-                    const next = Math.max(min, current - step);
-                    input.value = next;
-                    onChange && onChange();
-                });
-                btnInc.addEventListener('click', () => {
-                    const current = parseInt(input.value) || 0;
-                    const next = current + step;
-                    input.value = next;
-                    onChange && onChange();
-                });
-            }
-
-            function baixarImagemDoCard(card) {
-                const titulo = (card.querySelector('.model-title').value || 'tabela').trim();
-                const nomeArquivo = `${titulo || 'tabela'}.png`;
-                const opt = { backgroundColor: '#ffffff', scale: 2 };
-                html2canvas(card, opt).then(canvas => {
-                    const link = document.createElement('a');
-                    link.download = nomeArquivo;
-                    link.href = canvas.toDataURL('image/png');
-                    link.click();
-                });
-            }
+        // Adicionar evento de deletar cor
+        const btnDelete = tr.querySelector('.btn-delete-color');
+        btnDelete.addEventListener('click', function () {
+          if (confirm(`Deseja realmente apagar a cor "${nomeCor}"?`)) {
+            tr.remove();
+            atualizarTabelaDoCard(card);
+          }
         });
-    </script>
+
+        inputCor.value = '';
+        atualizarTabelaDoCard(card);
+      }
+
+      function setupQtyControl(containerEl, onChange) {
+        const input = containerEl.querySelector('input[type="number"]');
+        const btnDec = containerEl.querySelector('.btn-dec');
+        const btnInc = containerEl.querySelector('.btn-inc');
+        const min = input.min !== '' ? parseInt(input.min) : -Infinity;
+        const step = input.step !== '' ? parseInt(input.step) : 1;
+        btnDec.addEventListener('click', () => {
+          const current = parseInt(input.value) || 0;
+          const next = Math.max(min, current - step);
+          input.value = next;
+          onChange && onChange();
+        });
+        btnInc.addEventListener('click', () => {
+          const current = parseInt(input.value) || 0;
+          const next = current + step;
+          input.value = next;
+          onChange && onChange();
+        });
+      }
+
+      function baixarImagemDoCard(card) {
+        const titulo = (card.querySelector('.model-title').value || 'tabela').trim();
+        const nomeArquivo = `${titulo || 'tabela'}.png`;
+        const opt = { backgroundColor: '#ffffff', scale: 2 };
+        html2canvas(card, opt).then(canvas => {
+          const link = document.createElement('a');
+          link.download = nomeArquivo;
+          link.href = canvas.toDataURL('image/png');
+          link.click();
+        });
+      }
+    });
+  </script>
 </head>
 
 <body>
-    <div class="app-container">
-        <div class="app-header">
-            <h2>Tabelas de Cores e Tamanhos</h2>
-        </div>
-        <div class="app-actions">
-            <button id="btnNovaTabela">Adicionar Nova Tabela</button>
-        </div>
-        <div id="tablesContainer" class="cards-grid"></div>
+  <div class="app-container">
+    <div class="app-header">
+      <h2>Tabelas de Cores e Tamanhos</h2>
     </div>
+    <div class="app-actions">
+      <button id="btnNovaTabela">Adicionar Nova Tabela</button>
+    </div>
+    <div id="tablesContainer" class="cards-grid"></div>
+  </div>
 </body>
 
 </html>
